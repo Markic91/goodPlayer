@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MethodsService } from './methods.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'goodPlayer';
+  constructor(
+    protected ms: MethodsService
+  ) {}
+  addMusicFromService(music: any) {
+    this.ms.musicArray = this.ms.addMusic(music);
+  }
+  deleteMusicInService(music: string) {
+    this.ms.deleteMusic(music);
+  }
 }

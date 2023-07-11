@@ -1,3 +1,6 @@
-<ul *ngFor="let music of ms.musicArray">
-  <li> {{music}} </li>
+<ul *ngFor="let music of ms.musicArray; let i = index"  >
+  <li > {{music}} </li>
+  <button (click)="playTrack()">Jouer</button>
+  <button (click)="download()">Télécharger</button>
+  <button (click)="deleteTrack(i)">Supprimer</button>
 </ul>

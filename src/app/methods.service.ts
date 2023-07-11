@@ -4,11 +4,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class MethodsService {
-  musicArray: string[] = [];
+  musicArray: string[] = []
+  music! :string;
   constructor() {}
 
   addMusic(music: any): string[] {
     this.musicArray.push(music);
     return this.musicArray;
+  }
+  deleteMusic(music: string) {
+    this.musicArray = this.musicArray.filter((e) => music !== e)
   }
 }

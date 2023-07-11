@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MethodsService } from '../methods.service';
 
 @Component({
   selector: 'app-form',
@@ -8,17 +7,17 @@ import { MethodsService } from '../methods.service';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
-  constructor(
-    private readonly formBuilder: FormBuilder,
-    protected ms: MethodsService
-  ) {}
+  @Output() addMusic = new EventEmitter<string | null>();
+ 
+  constructor(private readonly formBuilder: FormBuilder) {}
+
   formPlayer = this.formBuilder.group({
     add: ['file', Validators.required],
     select: [''],
   });
 
-  addMusicFromService(music: any) {
-    this.ms.musicArray = this.ms.addMusic(music);
-    console.log(this.ms.musicArray);
+  addTrack() {
+    this.addMusic.emit(this.formPlayer.controls['select'].value);
+    this.formPlayer.reset({add: 'file'});
   }
 }
