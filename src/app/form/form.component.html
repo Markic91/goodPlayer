@@ -1,0 +1,32 @@
+<h1>Lecteur de musique</h1>
+<h2>Ajouter une musique</h2>
+<form [formGroup]="formPlayer">
+  <label for="add"
+    >Mode d'ajout
+    <select name="add" id="add" formControlName="add">
+      <option value="file">Fichier local</option>
+      <option value="url">URL</option>
+    </select>
+  </label>
+  <label for="select"
+    >Sélectionner un fichier audio
+    <input
+      type="file"
+      accept="audio/*"
+      *ngIf="formPlayer.controls['add'].value === 'file'"
+      formControlName="select"
+    />
+    <input
+      type="text"
+      *ngIf="formPlayer.controls['add'].value === 'url'"
+      formControlName="select"
+    />
+  </label>
+  <input
+    type="button"
+    value="Ajouter"
+    (click)="addMusicFromService(formPlayer.controls['select'].value)"
+  />
+</form>
+<h2>Liste de lecture</h2>
+<p *ngIf="ms.musicArray.length === 0">Votre liste de lecture est vide</p>
