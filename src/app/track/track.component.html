@@ -1,6 +1,6 @@
 <ul *ngFor="let music of ms.musicArray; let i = index"  >
-  <li > {{music}} </li>
-  <button (click)="playTrack()">Jouer</button>
+  <li > {{music.musicName}} </li>
+  <button (click)="playTrack(i)">Jouer</button>
   <button (click)="download()">Télécharger</button>
   <button (click)="deleteTrack(i)">Supprimer</button>
 </ul>

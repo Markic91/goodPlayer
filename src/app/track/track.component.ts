@@ -8,11 +8,14 @@ import { MethodsService } from '../methods.service';
 })
 export class TrackComponent {
   @Output() deleteMusic = new EventEmitter<string>();
+  @Output() playAudio = new EventEmitter<string>();
   constructor(protected ms: MethodsService) {}
 
-  playTrack() {}
+  playTrack(index : number) {
+    this.playAudio.emit(this.ms.musicArray[index].url);
+  }
   download() {}
   deleteTrack(index: number) {
-    this.deleteMusic.emit(this.ms.musicArray[index]);    
+    this.deleteMusic.emit(this.ms.musicArray[index]);
   }
 }
