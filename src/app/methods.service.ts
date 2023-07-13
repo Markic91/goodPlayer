@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class MethodsService {
   musicArray: any = [];
+  duration!: number;
+  songTime!: string;
   constructor() {}
 
   addMusic(music: any) {
@@ -15,10 +17,20 @@ export class MethodsService {
     this.musicArray = this.musicArray.filter((e: any) => music !== e);
   }
 
-  playAudio(music: string) {
-    let audio = new Audio();
-    audio.src = music;
-    audio.load();
+  async playAudio(music: string) {
+    const audio = new Audio(music);
+    const promise = (): Promise<number> => {
+      return new Promise((resolve) => {
+        audio.addEventListener('loadedmetadata', () => {
+          resolve(audio.duration);
+        });
+      });
+    };
+    this.duration = await promise();
+    this.songTime = `${Math.floor(this.duration / 60)}:${Math.floor(
+      this.duration % 60
+    )}`;
     audio.play();
+    return this.duration;
   }
 }

@@ -9,10 +9,14 @@ import { MethodsService } from '../methods.service';
 export class TrackComponent {
   @Output() deleteMusic = new EventEmitter<string>();
   @Output() playAudio = new EventEmitter<string>();
+  @Output() seePlayer = new EventEmitter<boolean>();
+  showPlayer: boolean = false;
   constructor(protected ms: MethodsService) {}
 
   playTrack(index : number) {
+    this.showPlayer = true;
     this.playAudio.emit(this.ms.musicArray[index].url);
+    this.seePlayer.emit(this.showPlayer);
   }
   download() {}
   deleteTrack(index: number) {

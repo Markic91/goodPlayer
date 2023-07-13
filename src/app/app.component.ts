@@ -7,6 +7,7 @@ import { MethodsService } from './methods.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  showPlayer!: boolean;
   constructor(protected ms: MethodsService) {}
   addMusicFromService(music: any) {
     this.ms.musicArray = this.ms.addMusic(music);
@@ -16,5 +17,8 @@ export class AppComponent {
   }
   playAudioFromService(music: string) {
     this.ms.playAudio(music);
+  }
+  seePlayer(event: boolean) {
+    this.showPlayer = event;
   }
 }
