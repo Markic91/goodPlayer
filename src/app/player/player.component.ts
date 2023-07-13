@@ -8,8 +8,9 @@ import { MethodsService } from '../methods.service';
 })
 export class PlayerComponent {
   @Output() playAudio = new EventEmitter<string>();
-  constructor(private ms: MethodsService){}
+  constructor(protected ms: MethodsService){}
   playTrack(index : number) {
     this.playAudio.emit(this.ms.musicArray[index].url);
+    
   }
 }
