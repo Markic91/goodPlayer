@@ -9,6 +9,7 @@ export class MethodsService {
   songTime!: string;
   currentSongTime!: string;
   audio: any;
+  progressBar:any;
   constructor() {}
 
   addMusic(music: any) {
@@ -21,7 +22,16 @@ export class MethodsService {
 
   async playAudio(music: string) {
     this.audio = new Audio(music);
-    this.currentSongTime = this.audio.currentTime;
+    this.audio.addEventListener(
+      'timeupdate',
+      () =>
+        {
+          this.progressBar= this.audio.currentTime;
+          (this.currentSongTime = `${Math.floor(
+          this.audio.currentTime / 60
+        )}:${String(Math.floor(this.audio.currentTime % 60)).padStart(2, '0')}`);
+          
+        });
     const promise = (): Promise<number> => {
       return new Promise((resolve) => {
         this.audio.addEventListener('loadedmetadata', () => {
@@ -33,7 +43,7 @@ export class MethodsService {
     this.songTime = `${Math.floor(this.duration / 60)}:${String(
       Math.floor(this.duration % 60)
     ).padStart(2, '0')}`;
-      // this.audio.play();
+    // this.audio.play();
 
     // return this.duration, this.currentSongTime;
   }
@@ -45,6 +55,6 @@ export class MethodsService {
   }
   stopAudio() {
     this.audio.pause();
-    this.audio.load()
+    this.audio.load();
   }
 }

@@ -2,10 +2,10 @@
   type="range"
   id="track"
   min="0"
-  value="{{this.ms.audio.currentTime}}"
-
+  value="{{this.ms.progressBar}}"
+  max="{{this.ms.duration}}"
 />
-<span id="elapsed">{{this.ms.audio.currentTime}}</span> /
+<span id="elapsed">{{this.ms.currentSongTime}}</span> /
 <span id="track-time">{{ this.ms.songTime }} </span>
 
 <button (click)="playTrack()">Play</button>
