@@ -21,4 +21,14 @@ export class AppComponent {
   seePlayer(event: boolean) {
     this.showPlayer = event;
   }
+  throwTrack(){
+    this.ms.throwTrack();
+  }
+  pauseAudio() {
+    this.ms.pauseAudio();
+  }
+  stopAudio() {
+    this.ms.stopAudio();
+  };
+ 
 }

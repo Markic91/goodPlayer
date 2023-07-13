@@ -7,6 +7,8 @@ export class MethodsService {
   musicArray: any = [];
   duration!: number;
   songTime!: string;
+  currentSongTime!: string;
+  audio: any;
   constructor() {}
 
   addMusic(music: any) {
@@ -18,19 +20,31 @@ export class MethodsService {
   }
 
   async playAudio(music: string) {
-    const audio = new Audio(music);
+    this.audio = new Audio(music);
+    this.currentSongTime = this.audio.currentTime;
     const promise = (): Promise<number> => {
       return new Promise((resolve) => {
-        audio.addEventListener('loadedmetadata', () => {
-          resolve(audio.duration);
+        this.audio.addEventListener('loadedmetadata', () => {
+          resolve(this.audio.duration);
         });
       });
     };
     this.duration = await promise();
-    this.songTime = `${Math.floor(this.duration / 60)}:${Math.floor(
-      this.duration % 60
-    )}`;
-    audio.play();
-    return this.duration;
+    this.songTime = `${Math.floor(this.duration / 60)}:${String(
+      Math.floor(this.duration % 60)
+    ).padStart(2, '0')}`;
+      // this.audio.play();
+
+    // return this.duration, this.currentSongTime;
+  }
+  throwTrack() {
+    this.audio.play();
+  }
+  pauseAudio() {
+    this.audio.pause();
+  }
+  stopAudio() {
+    this.audio.pause();
+    this.audio.load()
   }
 }

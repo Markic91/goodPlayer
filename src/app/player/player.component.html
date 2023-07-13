@@ -1,6 +1,13 @@
-<input type="range" id="track" min="0" value="0" >
-<span id="elapsed">0:00</span> / <span id="track-time">{{this.ms.songTime}} </span>
+<input
+  type="range"
+  id="track"
+  min="0"
+  value="{{this.ms.audio.currentTime}}"
 
-<button>Play</button>
-<button>Pause</button>
-<button>Stop</button>
+/>
+<span id="elapsed">{{this.ms.audio.currentTime}}</span> /
+<span id="track-time">{{ this.ms.songTime }} </span>
+
+<button (click)="playTrack()">Play</button>
+<button (click)="pauseTrack()">Pause</button>
+<button (click)="stopTrack()">Stop</button>

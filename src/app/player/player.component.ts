@@ -7,10 +7,17 @@ import { MethodsService } from '../methods.service';
   styleUrls: ['./player.component.css']
 })
 export class PlayerComponent {
-  @Output() playAudio = new EventEmitter<string>();
+  @Output() throwTrack = new EventEmitter<string>();
+  @Output() pauseAudio = new EventEmitter<string>();
+  @Output() stopAudio = new EventEmitter<string>();
   constructor(protected ms: MethodsService){}
-  playTrack(index : number) {
-    this.playAudio.emit(this.ms.musicArray[index].url);
-    
+  playTrack() {
+    this.throwTrack.emit(this.ms.musicArray.url);
   }
+ pauseTrack() {
+  this.pauseAudio.emit(this.ms.musicArray.url);
+ }
+ stopTrack() {
+  this.stopAudio.emit(this.ms.musicArray.url);
+ }
 }

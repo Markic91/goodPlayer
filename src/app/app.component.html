@@ -4,4 +4,4 @@
 <h2>Liste de lecture</h2>
 <p *ngIf="ms.musicArray.length === 0">Votre liste de lecture est vide</p>
 <app-track (deleteMusic)="deleteMusicInService($event)" (playAudio)="playAudioFromService($event)" (seePlayer)="seePlayer($event)"></app-track>
-<app-player *ngIf="showPlayer" ></app-player>
+<app-player *ngIf="showPlayer" (throwTrack)="throwTrack()" (pauseAudio)="pauseAudio()" (stopAudio)="stopAudio()"></app-player>
