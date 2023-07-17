@@ -57,4 +57,7 @@ export class MethodsService {
     this.audio.pause();
     this.audio.load();
   }
+  download() {
+    this.audio.download();
+  }
 }

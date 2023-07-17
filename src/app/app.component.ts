@@ -30,5 +30,7 @@ export class AppComponent {
   stopAudio() {
     this.ms.stopAudio();
   };
- 
+ download(){
+  this.ms.download();
+ }
 }
